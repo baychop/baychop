@@ -54,6 +54,11 @@ a:hover { text-decoration-thickness: 2px; }
   font-size: .78rem; font-weight: 600; text-align: center; line-height: 1.25rem; }
 [hidden] { display: none !important; }
 
+/* last run / next run */
+.runbox { display: inline-flex; flex-wrap: wrap; gap: .3rem 2.25rem; margin-top: 1rem; padding: .55rem .95rem; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; font-size: .92rem; }
+.runbox dl { margin: 0; display: flex; gap: .5rem; align-items: baseline; } .runbox dt { color: var(--muted); } .runbox dd { margin: 0; font-weight: 600; font-feature-settings: "tnum"; }
+.runbox.late { border-color: var(--caution); } .runbox.late dd { color: var(--caution); }
+
 /* headline */
 .lede { margin: 2.25rem 0 0; max-width: 24em; font-size: clamp(1.7rem, 4.4vw, 2.75rem); line-height: 1.12; font-weight: 640;
   font-variation-settings: "wdth" 88; letter-spacing: -.012em; text-wrap: balance; }

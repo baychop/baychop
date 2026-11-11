@@ -15,6 +15,10 @@
     <a class="name" href="./">Bay Chop<small>Galveston Bay water level forecast</small></a>
     <nav aria-label="Main"><a href="#forecast" data-view="forecast">Forecast</a><a href="#weather" data-view="weather">Weather</a><a href="#alerts" data-view="alerts">Alerts<span class="count" id="alertCount" hidden></span></a><a href="#sources">Sources</a><a href="about.html">How it works</a></nav>
   </header>
+  <div class="runbox" id="runbox" aria-live="polite">
+    <dl><dt>Last update</dt><dd id="runLast">Loading</dd></dl>
+    <dl><dt>Next update</dt><dd id="runNext">&nbsp;</dd></dl>
+  </div>
 
   <main>
    <div id="view-forecast">

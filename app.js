@@ -198,6 +198,20 @@
     });
   }
 
+  /* ---- last run / next run box. The job is scheduled for seven minutes past every hour (UTC, so also Central). ---- */
+  const RUN_MIN = 7;
+  function runbox() {
+    const stamp = t => fmt(t, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+    const now = Date.now(), last = F && F.issued, box = $('runbox');
+    let next = Math.floor(now / HR) * HR + RUN_MIN * 60000; if (next <= now) next += HR;
+    if (!last) { $('runLast').textContent = 'Not available'; $('runNext').textContent = 'Due about ' + stamp(next); return; }
+    const age = (now - last) / 60000, late = age > 100;
+    box.className = 'runbox' + (late ? ' late' : '');
+    $('runLast').textContent = stamp(last) + (late ? ', ' + (age >= 120 ? Math.round(age / 60) + ' hours ago' : Math.round(age) + ' minutes ago') : '');
+    $('runNext').textContent = late ? 'Overdue. Scheduled hourly; next attempt about ' + stamp(next) : 'Due about ' + stamp(next);
+  }
+  setInterval(runbox, 60000);
+
   /* ---- menu bar: three views in one page ---- */
   const VIEWS = ['forecast', 'weather', 'alerts'];
   function route(scroll) {
@@ -209,7 +223,7 @@
   window.addEventListener('hashchange', () => route(true));
   route(false);
 
-  function render() { const fc = rows.filter(r => !r.obs && r.t + HR > Date.now()); headline(fc); notice(); grid(); pick(); chart(); lows(fc); weather(fc);
+  function render() { const fc = rows.filter(r => !r.obs && r.t + HR > Date.now()); headline(fc); notice(); grid(); pick(); chart(); lows(fc); weather(fc); runbox();
     document.querySelectorAll('.units button').forEach(b => b.setAttribute('aria-pressed', b.dataset.u === units ? 'true' : 'false')); }
 
   document.querySelectorAll('.units button').forEach(b => b.addEventListener('click', () => { units = b.dataset.u; try { localStorage.setItem('baychop_units', units); } catch (e) {} render(); }));
@@ -233,6 +247,7 @@
     } catch (err) {
       $('lede').textContent = 'The forecast could not be loaded.';
       $('sub').textContent = 'The stored forecast file did not open (' + err.message + '). Reload the page in a minute. Until it loads, use the tide table and the live gauge linked below.';
+      runbox();
       $('wxSynopsis').textContent = 'The forecast could not be loaded, so there is no discussion. Use the forecasters\' links below.';
     }
   })();
