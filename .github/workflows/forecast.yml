@@ -1,0 +1,28 @@
+name: Hourly forecast
+on:
+  schedule:
+    - cron: '7 * * * *'      # every hour at :07 UTC
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: forecast
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build forecast
+        run: node scripts/forecast.mjs
+      - name: Publish
+        run: |
+          git config user.name "baychop-bot"
+          git config user.email "baychop-bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -m "Forecast $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How it works. Bay Chop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="mast"><a class="name" href="./">Bay Chop<small>Galveston Bay water level forecast</small></a><nav><a href="./">This week's forecast</a></nav></header>
+  <main class="prose">
+    <h1>In Galveston Bay the wind moves more water than the moon does.</h1>
+    <p>The tide table predicts only the astronomical tide. At the Clear Lake entrance that tide is small, often about a foot. A strong norther can push two or three feet of water out of the bay, and a steady southeast wind piles it in. This page forecasts the level the gauge will actually read, hour by hour, and shows how far that is from the tide table.</p>
+
+    <h2>What goes in</h2>
+    <p>Every hour a job collects the USGS Kemah gauge (seaward sensor), NOAA tide predictions for Clear Lake and Eagle Point, observed wind, pressure and water level at Eagle Point and Galveston Pier 21, Trinity River flow, the National Weather Service wind forecast, and a GFS pressure forecast.</p>
+
+    <h2>How the forecast is built</h2>
+    <p>First the tide is removed, using a blend of the two NOAA predictions fitted to the gauge. What is left is the weather's share of the water level. A regression estimates that share from wind over the past four days (both speed and speed squared), barometric pressure, river flow, the season and a slow trend. Whatever the regression misses right now is carried forward and fades with time: a little over half of it remains after one day and about a sixth after a week. The tide is then added back.</p>
+
+    <h2>How accurate it has been</h2>
+    <p>The model was fitted on 2012 to 2023 and scored only on 2024 to 2026, years it never saw. Typical error in feet:</p>
+    <div class="scrollx"><table style="min-width:26rem">
+      <thead><tr><th>Lead</th><th class="r">Tide table alone</th><th class="r">This forecast</th></tr></thead>
+      <tbody>
+        <tr><td>Day 1</td><td class="r">0.59</td><td class="r">0.32</td></tr>
+        <tr><td>Day 3</td><td class="r">0.60</td><td class="r">0.41</td></tr>
+        <tr><td>Day 5</td><td class="r">0.61</td><td class="r">0.49</td></tr>
+        <tr><td>Day 7</td><td class="r">0.61</td><td class="r">0.56</td></tr>
+      </tbody></table></div>
+    <p>The tide-table column was already given a 30-day level correction, so the comparison is fair. The forecast column assumes a typical amount of error in the wind forecast, because no archive of past wind forecasts was available to test with. Under a more pessimistic assumption, day 7 is no better than the tide table. That is why days five to seven are marked as an outlook.</p>
+    <p>The ranges on the main page come from the same test years. In ordinary weather the 2-in-3 range runs from about ±0.3 ft on day one to ±0.5 ft on day seven. When the forecast itself calls for a large wind-driven drop, the ranges widen to about ±0.4 to ±0.7 ft, because those are the hardest hours to get right.</p>
+
+    <h2>Two January 2026 northers, as a check</h2>
+    <p>Forecasts issued three days ahead of the two lowest readings of winter 2025–26, using the data that existed at the time (and the wind that actually blew, since no archive of past wind forecasts exists). On 31 January the forecast said −2.00 ft and the gauge bottomed at −2.06; the tide table said −1.05. On 15 January the forecast had the timing to the hour but called for −1.24 against an actual −2.08; the tide table said −0.53. One hit, one miss, and in both cases the forecast was closer than the tide table and erred toward showing less water, not more.</p>
+
+    <h2>Known limits</h2>
+    <ul>
+      <li>The forecast is only as good as the wind forecast. A front that arrives six hours early moves the low water six hours early.</li>
+      <li>Tropical storms and surge events are outside what the model was built for. Use official National Hurricane Center and National Weather Service products.</li>
+      <li>Heavy local rain and Clear Creek flooding are not modelled.</li>
+      <li>Water level is not depth. Channel depth depends on the latest survey and on shoaling since.</li>
+      <li>The conversion from gauge feet to chart datum uses an estimated 0.45 ft offset that has not been surveyed.</li>
+    </ul>
+    <p>Every forecast issued is archived so that these accuracy figures can be replaced with a record of real forecasts against real outcomes.</p>
+  </main>
+  <footer>Guidance only. Make your own decision. Not affiliated with USGS, NOAA, the National Weather Service or the Army Corps of Engineers.</footer>
+</div>
+</body>
+</html>

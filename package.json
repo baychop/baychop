@@ -1,0 +1,1 @@
+{ "name": "baychop", "private": true, "type": "module", "scripts": { "forecast": "node scripts/forecast.mjs" } }

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bay Chop</title>
+<meta name="description" content="Seven-day, hour-by-hour water level forecast for the Clear Lake entrance at Kemah, Texas, compared with the tide table.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <a class="name" href="./">Bay Chop<small>Galveston Bay water level forecast</small></a>
+    <nav><a href="#lows-h">Low waters</a><a href="#sources">Sources</a><a href="about.html">How it works</a></nav>
+  </header>
+
+  <main>
+    <h1 class="lede" id="lede">Loading the forecast for the Clear Lake entrance at Kemah.</h1>
+    <p class="sub" id="sub"></p>
+    <p class="notice" id="notice" hidden></p>
+
+    <div class="controls">
+      <div>
+        <div class="scale-cap"><span>Less water than the tide table</span><span>More</span></div>
+        <div class="scale" aria-hidden="true">
+          <i class="c-lo4"></i><i class="c-lo3"></i><i class="c-lo2"></i><i class="c-lo1"></i><i style="background:var(--flat)"></i><i class="c-hi1"></i><i class="c-hi2"></i><i class="c-hi3"></i><i class="c-hi4"></i>
+          <span>1.5+</span><span>1.0</span><span>0.5</span><span>0.25</span><span>same</span><span>0.25</span><span>0.5</span><span>1.0</span><span>1.5+ ft</span>
+        </div>
+      </div>
+      <div class="units" role="group" aria-label="Height reference">
+        <button type="button" data-u="gauge" aria-pressed="true">Gauge feet</button>
+        <button type="button" data-u="chart" aria-pressed="false">Above chart datum</button>
+      </div>
+    </div>
+
+    <div class="week"><div class="grid" id="grid" role="group" aria-label="Hourly forecast against the tide table, Central time"></div></div>
+    <div class="keyline">
+      <span class="k"><i class="sw obs"></i>Already observed at the gauge</span>
+      <span class="k"><i class="sw outlook"></i>Beyond four days: an outlook, not much better than the tide table</span>
+      <span>Times are Central. Select an hour for detail.</span>
+    </div>
+    <div class="pick" id="pick" aria-live="polite"></div>
+
+    <section>
+      <h2 class="h">The week as a curve</h2>
+      <p class="note">Forecast level in <span id="chartUnits">ft on the gauge</span>, with the range it should fall in 2 times in 3 (darker) and 9 times in 10 (lighter). The dashed line is the tide table; the dark line is what the gauge recorded.</p>
+      <svg class="chart" id="chart" role="img" aria-label="Forecast water level for the next seven days with uncertainty ranges and the tide table"></svg>
+    </section>
+
+    <section>
+      <h2 class="h" id="lows-h">Low waters ahead</h2>
+      <p class="note">Each forecast low, in <span id="lowsUnits">ft on the gauge</span>.</p>
+      <div class="scrollx"><table id="lows"><thead><tr><th>When</th><th class="r">Forecast</th><th class="r">Tide table</th><th class="r">Difference</th><th class="r">Likely range</th><th>Wind</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="caution">
+      <h2>Guidance only. The decision is yours.</h2>
+      <p>This is a statistical forecast, not an official product, and it will sometimes be wrong by more than the ranges shown. It says nothing about the depth of any channel: shoaling, dredging and survey age matter as much as the water level. Check the live gauge and current surveys, know your own draft and margin, and make your own decision. Use of this page is at your own risk.</p>
+      <p>"Above chart datum" subtracts an estimated 0.45 ft from the gauge to approximate mean lower low water. That offset has not been surveyed.</p>
+    </section>
+
+    <section id="sources">
+      <h2 class="h">Check it yourself</h2>
+      <ul class="links">
+        <li><a href="https://waterdata.usgs.gov/monitoring-location/08077637/">Live Kemah gauge, USGS 08077637</a><span>The seaward sensor is the one this forecast predicts.</span></li>
+        <li><a href="https://www.swg.usace.army.mil/Missions/Navigation/Hydrographic-Surveys/">Channel surveys, Army Corps Galveston District</a><span>Latest soundings for the Clear Creek and Clear Lake channel.</span></li>
+        <li><a href="https://tidesandcurrents.noaa.gov/noaatidepredictions.html?id=8770933">Tide table, NOAA Clear Lake 8770933</a><span>The astronomical tide with no weather in it.</span></li>
+        <li><a href="https://tidesandcurrents.noaa.gov/stationhome.html?id=8771013">Eagle Point, NOAA 8771013</a><span>Bay water level, wind and pressure used by the model.</span></li>
+        <li><a href="https://www.weather.gov/hgx/">National Weather Service, Houston/Galveston</a><span>The wind forecast behind every number here.</span></li>
+        <li><a href="about.html">How the forecast is made and how accurate it has been</a><span>Method, test results and known limits.</span></li>
+      </ul>
+    </section>
+  </main>
+  <footer>Bay Chop. Updated hourly from public USGS, NOAA and National Weather Service data. Not affiliated with those agencies.</footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
