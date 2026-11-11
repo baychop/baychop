@@ -46,7 +46,13 @@ a:hover { text-decoration-thickness: 2px; }
   border-bottom: 1px solid var(--rule); padding-bottom: .75rem; }
 .mast .name { font-weight: 700; font-variation-settings: "wdth" 118; letter-spacing: .01em; text-decoration: none; }
 .mast .name small { font-weight: 400; color: var(--muted); font-variation-settings: "wdth" 100; margin-left: .6rem; font-size: .9rem; }
-.mast nav { display: flex; gap: 1.25rem; font-size: .95rem; color: var(--muted); }
+.mast nav { display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; font-size: .95rem; color: var(--muted); }
+.mast nav a { text-decoration: none; padding: .15rem 0; border-bottom: 2px solid transparent; }
+.mast nav a:hover { color: var(--ink); }
+.mast nav a[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--ink); }
+.mast nav .count { display: inline-block; min-width: 1.25rem; margin-left: .35rem; padding: 0 .35rem; border-radius: 999px; background: var(--caution); color: var(--paper);
+  font-size: .78rem; font-weight: 600; text-align: center; line-height: 1.25rem; }
+[hidden] { display: none !important; }
 
 /* headline */
 .lede { margin: 2.25rem 0 0; max-width: 24em; font-size: clamp(1.7rem, 4.4vw, 2.75rem); line-height: 1.12; font-weight: 640;
@@ -117,6 +123,31 @@ tr.outlook td { color: var(--muted); }
 .links { columns: 2 18rem; column-gap: 3rem; padding: 0; margin: .5rem 0 0; list-style: none; max-width: 56em; }
 .links li { break-inside: avoid; margin-bottom: .8rem; } .links span { display: block; color: var(--muted); font-size: .92rem; }
 footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
+
+/* alerts */
+.alertstrip { display: block; margin: 1.25rem 0 0; padding: .6rem .9rem; border-left: 4px solid var(--lo3); background: var(--panel); text-decoration: none; font-weight: 500; max-width: 48em; }
+.alertstrip.sev { border-left-color: var(--caution); color: var(--caution); }
+.alertstrip + .lede { margin-top: 1.5rem; }
+.lede.small { font-size: clamp(1.5rem, 3.6vw, 2.1rem); }
+.alerts { margin-top: 1.5rem; display: grid; gap: .75rem; max-width: 50em; }
+.alert { background: var(--panel); border: 1px solid var(--rule); border-left: 4px solid var(--lo3); border-radius: 0 6px 6px 0; padding: .85rem 1.1rem; }
+.alert.sev { border-left-color: var(--caution); }
+.alert .ah { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.alert h2 { margin: 0; font-size: 1.1rem; font-weight: 650; font-variation-settings: "wdth" 92; }
+.alert.sev h2 { color: var(--caution); }
+.alert .src { font-size: .78rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 0 .55rem; white-space: nowrap; }
+.alert .when { margin: .25rem 0 0; color: var(--muted); }
+.alert details { margin-top: .5rem; } .alert summary { cursor: pointer; font-size: .92rem; color: var(--muted); }
+.alert .body { margin: .5rem 0 0; white-space: pre-line; font-size: .95rem; }
+
+/* weather discussion */
+.wx { border-top: 1px solid var(--rule); max-width: 56em; }
+.wxday { display: grid; grid-template-columns: 7.5rem 13rem 4.2rem minmax(0, 1fr); gap: .3rem 1.25rem; padding: .7rem 0; border-bottom: 1px solid var(--rule); align-items: start; }
+.wxday .d { font-weight: 600; font-variation-settings: "wdth" 86; } .wxday .d small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.wxday .w { color: var(--muted); }
+.wxday.outlook .t, .wxday.outlook .d { color: var(--muted); }
+.wxfoot { margin-top: 1rem; font-size: .92rem; }
+@media (max-width: 40rem) { .wxday { grid-template-columns: minmax(0, 1fr) auto; } .wxday .w { grid-column: 1; } .wxday > div:nth-child(3) { grid-row: 1; grid-column: 2; } .wxday .t { grid-column: 1 / -1; } }
 
 /* about page */
 .prose { max-width: 40em; } .prose h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.12; font-variation-settings: "wdth" 88; margin: 2.25rem 0 1rem; }

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bay Chop</title>
-<meta name="description" content="Seven-day, hour-by-hour water level forecast for the Clear Lake entrance at Kemah, Texas, compared with the tide table.">
+<meta name="description" content="Seven-day, hour-by-hour water level forecast for the Clear Lake entrance at Kemah, Texas, compared with the tide table, with a weather discussion and marine alerts for Galveston Bay.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -13,10 +13,12 @@
 <div class="wrap">
   <header class="mast">
     <a class="name" href="./">Bay Chop<small>Galveston Bay water level forecast</small></a>
-    <nav><a href="#lows-h">Low waters</a><a href="#sources">Sources</a><a href="about.html">How it works</a></nav>
+    <nav aria-label="Main"><a href="#forecast" data-view="forecast">Forecast</a><a href="#weather" data-view="weather">Weather</a><a href="#alerts" data-view="alerts">Alerts<span class="count" id="alertCount" hidden></span></a><a href="#sources">Sources</a><a href="about.html">How it works</a></nav>
   </header>
 
   <main>
+   <div id="view-forecast">
+    <a class="alertstrip" id="alertStrip" href="#alerts" hidden></a>
     <h1 class="lede" id="lede">Loading the forecast for the Clear Lake entrance at Kemah.</h1>
     <p class="sub" id="sub"></p>
     <p class="notice" id="notice" hidden></p>
@@ -72,6 +74,50 @@
         <li><a href="about.html">How the forecast is made and how accurate it has been</a><span>Method, test results and known limits.</span></li>
       </ul>
     </section>
+   </div>
+
+   <div id="view-weather" hidden>
+    <h1 class="lede small">Weather for the forecast week</h1>
+    <p class="sub" id="wxSynopsis"></p>
+    <section>
+      <h2 class="h">Day by day</h2>
+      <p class="note">Wind is what moves this forecast away from the tide table. Each day shows the forecast wind and what it does to the water level, in <span id="wxUnits">ft on the gauge</span>.</p>
+      <div class="wx" id="wx"></div>
+      <p class="note wxfoot">Written automatically each hour from the National Weather Service wind forecast and this run's water levels. It is not a forecaster's discussion. Beyond four days it is an outlook.</p>
+    </section>
+    <section>
+      <h2 class="h">From the forecasters</h2>
+      <ul class="links">
+        <li><a href="https://forecast.weather.gov/product.php?site=HGX&amp;issuedby=HGX&amp;product=AFD">Area forecast discussion, NWS Houston/Galveston</a><span>The forecasters' own reasoning, updated several times a day.</span></li>
+        <li><a href="https://forecast.weather.gov/shmrn.php?mz=gmz335">Marine forecast for Galveston Bay</a><span>Official wind and bay-water forecast for the marine zone.</span></li>
+      </ul>
+    </section>
+   </div>
+
+   <div id="view-alerts" hidden>
+    <h1 class="lede small">Alerts for Galveston Bay</h1>
+    <p class="sub" id="alertStatus">Loading alerts.</p>
+    <div class="alerts" id="alertList"></div>
+    <section>
+      <h2 class="h">Coast Guard notices</h2>
+      <p class="note">Port conditions, channel closures, dredging and hazards to navigation. This page does not check these automatically. Open them before a trip.</p>
+      <ul class="links">
+        <li><a href="https://homeport.uscg.mil/port-directory/houston-galveston">Sector Houston-Galveston on Homeport</a><span>Port condition and local safety bulletins from the Captain of the Port.</span></li>
+        <li><a href="https://www.navcen.uscg.gov/">Coast Guard Navigation Center</a><span>Local notices to mariners and marine safety information bulletins.</span></li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="h">Official weather alerts</h2>
+      <ul class="links">
+        <li><a href="https://www.weather.gov/hgx/">National Weather Service, Houston/Galveston</a><span>Every watch, warning and advisory in force, direct from the source.</span></li>
+        <li><a href="https://forecast.weather.gov/shmrn.php?mz=gmz335">Marine forecast for Galveston Bay</a><span>Carries any marine advisory in its headline.</span></li>
+      </ul>
+    </section>
+    <section class="caution">
+      <h2>This list can lag or miss an alert.</h2>
+      <p>Alerts are copied from the National Weather Service once an hour. A new warning can be out for up to an hour before it shows here, and the copy can fail. In threatening weather, use the official sources above and VHF weather radio.</p>
+    </section>
+   </div>
   </main>
   <footer>Bay Chop. Updated hourly from public USGS, NOAA and National Weather Service data. Not affiliated with those agencies.</footer>
 </div>
