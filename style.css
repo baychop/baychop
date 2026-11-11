@@ -77,6 +77,10 @@ a:hover { text-decoration-thickness: 2px; }
 .units button { font: inherit; font-size: .88rem; color: var(--muted); background: none; border: 0; padding: .35rem .85rem; border-radius: 999px; cursor: pointer; }
 .units button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 
+.unitsbox { display: flex; flex-direction: column; align-items: flex-end; gap: .4rem; max-width: 26rem; }
+.unitshint { margin: 0; font-size: .85rem; color: var(--muted); text-align: right; }
+@media (max-width: 40rem) { .unitsbox { align-items: flex-start; } .unitshint { text-align: left; } }
+
 /* the week grid */
 .week { overflow-x: auto; }
 .grid { display: grid; grid-template-columns: 5.2rem repeat(24, minmax(1.05rem, 1fr)); gap: 2px; min-width: 38rem; }
@@ -157,6 +161,12 @@ footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--rule
 /* about page */
 .prose { max-width: 40em; } .prose h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.12; font-variation-settings: "wdth" 88; margin: 2.25rem 0 1rem; }
 .prose h2 { font-size: 1.25rem; margin: 2.4rem 0 .5rem; font-variation-settings: "wdth" 92; } .prose p, .prose li { margin: 0 0 .85rem; }
+
+.depthfig { width: 100%; max-width: 34rem; height: auto; display: block; margin: 1rem 0; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; }
+.depthfig text { font-family: inherit; font-size: 13px; fill: var(--ink); } .depthfig text.m { fill: var(--muted); font-size: 12.5px; }
+.prose table { min-width: 0; margin: 0 0 1rem; } .prose td, .prose th { white-space: normal; }
+.prose td.less { color: var(--caution); font-weight: 600; }
+.prose .cautions { border-left: 3px solid var(--caution); padding-left: .9rem; }
 
 /* phones: the whole week fits the screen width, no sideways scroll */
 .day .s { display: none; }

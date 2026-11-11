@@ -37,6 +37,36 @@
     <h2>Two January 2026 northers, as a check</h2>
     <p>Forecasts issued three days ahead of the two lowest readings of winter 2025–26, using the data that existed at the time (and the wind that actually blew, since no archive of past wind forecasts exists). On 31 January the forecast said −2.00 ft and the gauge bottomed at −2.06; the tide table said −1.05. On 15 January the forecast had the timing to the hour but called for −1.24 against an actual −2.08; the tide table said −0.53. One hit, one miss, and in both cases the forecast was closer than the tide table and erred toward showing less water, not more.</p>
 
+    <h2 id="depth">Gauge feet and chart depths</h2>
+    <p>The chart shows how deep a spot is when the water sits at chart datum, a low-water reference line (mean lower low water). This forecast shows how high the water is. Add the two to estimate depth.</p>
+    <p>The gauge has its own scale, and its zero is not chart datum. Subtracting 0.45 ft from the gauge reading gives the height above chart datum. The "Above chart datum" switch on the forecast page does that subtraction for you.</p>
+    <svg class="depthfig" viewBox="0 0 420 210" role="img" aria-label="Cross-section: the water surface is 0.6 ft above chart datum and the bottom is 5 ft below it, so the depth now is 5.6 ft">
+      <rect x="20" y="50" width="380" height="120" fill="var(--hi1)"/>
+      <rect x="20" y="170" width="380" height="26" fill="var(--lo1)"/>
+      <line x1="20" y1="50" x2="400" y2="50" stroke="var(--hi3)" stroke-width="2.5"/>
+      <line x1="20" y1="66" x2="400" y2="66" stroke="var(--caution)" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="26" y="40">Water surface now</text>
+      <text x="26" y="86">Chart datum</text>
+      <text x="26" y="188">Bottom</text>
+      <line x1="200" y1="52" x2="200" y2="64" stroke="var(--ink)" stroke-width="1.5"/>
+      <text class="m" x="206" y="40">0.6 ft above chart datum</text>
+      <line x1="200" y1="68" x2="200" y2="168" stroke="var(--ink)" stroke-width="1.5"/>
+      <text class="m" x="206" y="112">5.0 ft charted</text>
+      <line x1="382" y1="52" x2="382" y2="168" stroke="var(--hi4)" stroke-width="2.5"/>
+      <text x="374" y="150" text-anchor="end">Depth now 5.6 ft</text>
+    </svg>
+    <p>In the picture the gauge reads 1.05 ft, which is 0.6 ft above chart datum.</p>
+    <table>
+      <thead><tr><th>Gauge reading</th><th>Above chart datum</th><th>Over a charted 5 ft spot</th></tr></thead>
+      <tbody>
+        <tr><td>1.05 ft</td><td>+0.6 ft</td><td>about 5.6 ft</td></tr>
+        <tr><td>0.45 ft</td><td>0</td><td>5.0 ft, same as the chart</td></tr>
+        <tr><td>−0.20 ft</td><td class="less">−0.65 ft</td><td class="less">about 4.35 ft, less than charted</td></tr>
+      </tbody>
+    </table>
+    <p>After a strong north wind the water can drop below chart datum, so there is less water than the chart shows.</p>
+    <p class="cautions">Two cautions. The 0.45 ft conversion is an estimate and has not been surveyed. And charted depths are only as good as the last survey: channels shoal, so the bottom may be higher than charted.</p>
+
     <h2>The weather discussion and the alerts</h2>
     <p>The Weather page is written by the same hourly job, from the wind forecast and the water levels of that run. It describes the forecast in words; it adds no information of its own and is not a forecaster's discussion. The National Weather Service's own discussion is linked from that page.</p>
     <p>The Alerts page copies the National Weather Service alerts in force for the Galveston Bay marine zone and for the Clear Lake entrance, once an hour. It can lag the official source by up to an hour and the copy can fail, in which case the page says so. Coast Guard notices are linked, not checked.</p>

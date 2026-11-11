@@ -224,7 +224,8 @@
   route(false);
 
   function render() { const fc = rows.filter(r => !r.obs && r.t + HR > Date.now()); headline(fc); notice(); grid(); pick(); chart(); lows(fc); weather(fc); runbox();
-    document.querySelectorAll('.units button').forEach(b => b.setAttribute('aria-pressed', b.dataset.u === units ? 'true' : 'false')); }
+    document.querySelectorAll('.units button').forEach(b => b.setAttribute('aria-pressed', b.dataset.u === units ? 'true' : 'false'));
+    $('unitsHint').textContent = units === 'chart' ? 'Add this number to the depth on your chart. Negative means less water than charted.' : 'Gauge feet are the gauge\'s own scale, not chart depths. Switch to "Above chart datum" to compare with your chart.'; }
 
   document.querySelectorAll('.units button').forEach(b => b.addEventListener('click', () => { units = b.dataset.u; try { localStorage.setItem('baychop_units', units); } catch (e) {} render(); }));
 
